@@ -1,12 +1,12 @@
 require 'rspec'
 require 'rack/test'
-require_relative '../app'
+require_relative '../../app/controllers/line_bot_controller'
 
-RSpec.describe App do
+RSpec.describe LineBotController do
   include Rack::Test::Methods
 
   def app
-    App
+    LineBotController
   end
 
   describe "POST /callback" do

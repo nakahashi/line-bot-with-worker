@@ -1,5 +1,4 @@
 require 'line/bot'
-
 require_relative "../models/worker"
 
 unless production?
