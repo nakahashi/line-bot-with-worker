@@ -51,7 +51,5 @@ class LineBotController < Sinatra::Base
       text: payload["message"]
     }
     @client.reply_message(payload["token"], message)
-
-    "OK"
   end
 end
