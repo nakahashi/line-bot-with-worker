@@ -9,7 +9,7 @@ class Worker
   def perform(payload)
     project = ENV['PROJECT_ID']
     location = ENV["REGION"]
-    queue = ENV["TASK_QUEUE"]
+    queue = ENV["WORKER_QUEUE"]
     parent = @tasks_client.queue_path(project:, location:, queue:)
 
     url = "#{ENV['BOT_URL']}/worker"

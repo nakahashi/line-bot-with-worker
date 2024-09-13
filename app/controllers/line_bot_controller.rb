@@ -45,9 +45,13 @@ class LineBotController < Sinatra::Base
 
   post '/worker' do
     p "サービスアカウント認証 done!"
-    payload = JSON.parse(request.body.read)
+    payload = JSON.parse(request.body.read)["payload"]
 
-    @client.reply_message(payload["token"], payload["message"])
+    message = {
+      type: 'text',
+      text: payload["message"]
+    }
+    @client.reply_message(payload["token"], message)
 
     "OK"
   end
