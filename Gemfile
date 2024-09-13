@@ -1,18 +1,21 @@
-source 'https://rubygems.org'
+# frozen_string_literal: true
 
-gem 'sinatra'
-gem 'rackup'
-gem 'faraday'
+source "https://rubygems.org"
+
+gem "sinatra"
+gem "rackup"
+gem "faraday"
 
 group :service do
-  gem 'google-cloud-tasks'
-  gem 'line-bot-api'
+  gem "google-cloud-tasks"
+  gem "line-bot-api"
 end
 
 group :development do
   gem "debug"
   gem "rerun"
   gem "rubocop", require: false
+  gem "rubocop-rspec", require: false
   gem "rubocop-shopify", require: false
 end
 

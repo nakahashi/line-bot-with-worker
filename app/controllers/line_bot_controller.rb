@@ -1,4 +1,6 @@
-require 'line/bot'
+# frozen_string_literal: true
+
+require "line/bot"
 require_relative "../models/worker"
 
 unless production?
@@ -14,12 +16,12 @@ class LineBotController < Sinatra::Base
     end
   end
 
-  post '/callback' do
+  post "/callback" do
     body = request.body.read
 
-    signature = request.env['HTTP_X_LINE_SIGNATURE']
+    signature = request.env["HTTP_X_LINE_SIGNATURE"]
     unless @client.validate_signature(body, signature)
-      halt 400, {'Content-Type' => 'text/plain'}, 'Bad Request'
+      halt 400, { "Content-Type" => "text/plain" }, "Bad Request"
     end
 
     events = @client.parse_events_from(body)
@@ -30,8 +32,8 @@ class LineBotController < Sinatra::Base
         case event.type
         when Line::Bot::Event::MessageType::Text
           payload = {
-            token: event['replyToken'],
-            message: event.message['text']
+            token: event["replyToken"],
+            message: event.message["text"],
           }
 
           Worker.new.perform(payload)
@@ -40,13 +42,13 @@ class LineBotController < Sinatra::Base
     end
   end
 
-  post '/worker' do
+  post "/worker" do
     p "サービスアカウント認証 done!"
     payload = JSON.parse(request.body.read)["payload"]
 
     message = {
-      type: 'text',
-      text: payload["message"]
+      type: "text",
+      text: payload["message"],
     }
     @client.reply_message(payload["token"], message)
   end

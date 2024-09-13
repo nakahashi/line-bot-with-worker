@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Line
   module Bot
     class Client
@@ -6,7 +8,7 @@ module Line
       end
 
       def reply_message(token, message)
-        p "#reply_message token: #{token}, message: #{message}"
+        p("#reply_message token: #{token}, message: #{message}")
       end
     end
   end

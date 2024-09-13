@@ -1,8 +1,10 @@
-ENV['RACK_ENV'] ||= 'test'
+# frozen_string_literal: true
 
-require 'rack/test'
-require 'rspec'
-require_relative '../app'
+ENV["RACK_ENV"] ||= "test"
+
+require "rack/test"
+require "rspec"
+require_relative "../app"
 
 module RSpecMixin
   include Rack::Test::Methods
