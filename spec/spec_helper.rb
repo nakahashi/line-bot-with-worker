@@ -2,7 +2,7 @@ ENV['RACK_ENV'] ||= 'test'
 
 require 'rack/test'
 require 'rspec'
-require_relative '../app' # Sinatraアプリケーションが定義されているファイル
+require_relative '../app'
 
 module RSpecMixin
   include Rack::Test::Methods

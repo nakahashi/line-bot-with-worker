@@ -1,5 +1,6 @@
 require 'rspec'
 require 'rack/test'
+require 'spec_helper'
 require_relative '../../app/controllers/line_bot_controller'
 
 RSpec.describe LineBotController do
@@ -21,7 +22,6 @@ RSpec.describe LineBotController do
 
       it 'OKを返す' do
         expect(last_response).to be_ok
-        expect(last_response.body).to eq('OK')
       end
     end
 

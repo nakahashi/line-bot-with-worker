@@ -38,8 +38,6 @@ class LineBotController < Sinatra::Base
         end
       end
     end
-
-    'OK'
   end
 
   post '/worker' do
