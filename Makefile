@@ -24,3 +24,4 @@ deploy:
 	docker build --platform linux/amd64 -t gcr.io/$(PROJECT_ID)/bot .
 	docker push gcr.io/$(PROJECT_ID)/bot
 	gcloud run deploy bot --image gcr.io/$(PROJECT_ID)/bot --platform managed --region asia-northeast1 --allow-unauthenticated
+	gcloud run deploy worker --image gcr.io/$(PROJECT_ID)/bot --platform managed --region asia-northeast1

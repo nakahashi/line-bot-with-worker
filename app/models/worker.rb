@@ -14,11 +14,14 @@ class Worker
     queue = ENV["WORKER_QUEUE"]
     parent = @tasks_client.queue_path(project:, location:, queue:)
 
-    url = "#{ENV["BOT_URL"]}/worker"
+    url = "#{ENV["WORKER_URL"]}/worker"
     task = {
       http_request: {
         http_method: :POST,
         url:,
+        oidc_token: {
+          service_account_email: ENV["WORKER_SERVICE_ACCOUNT"]
+        },
         headers: { "Content-Type": "application/json" },
         body: { payload: }.to_json,
       },

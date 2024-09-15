@@ -1,8 +1,11 @@
 export PROJECT_ID=line-bot-with-worker
 export REGION=asia-northeast1
-export WORKER_QUEUE=worker-queue
 export BOT_URL="http://127.0.0.1"
 export PORT=8080
+export WORKER_URL="http://127.0.0.1"
+export WORKER_SERVICE=true
+export WORKER_QUEUE=worker-queue
+export WORKER_SERVICE_ACCOUNT=""
 export LINE_CHANNEL_ID=xxxxxxxx
 export LINE_CHANNEL_SECRET=xxxxxxxx
 export LINE_CHANNEL_TOKEN=xxxxxxxx
