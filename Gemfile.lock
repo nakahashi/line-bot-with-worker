@@ -227,6 +227,7 @@ DEPENDENCIES
   debug
   faraday
   google-cloud-tasks
+  googleauth
   line-bot-api
   rack-test
   rackup

@@ -8,6 +8,7 @@ gem "faraday"
 
 group :service do
   gem "google-cloud-tasks"
+  gem "googleauth"
   gem "line-bot-api"
 end
 

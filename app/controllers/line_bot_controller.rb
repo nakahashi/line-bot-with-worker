@@ -43,7 +43,14 @@ class LineBotController < Sinatra::Base
   end
 
   post "/worker" do
-    p "サービスアカウント認証 done!"
+    # ちゃんと動くかサーバー上で確認
+    # 環境変数もちゃんと入れる必要ある
+    begin
+      Worker.authenticate!(request)
+    rescue => e
+      halt 403, "Invalid token: #{e.message}"
+    end
+
     payload = JSON.parse(request.body.read)["payload"]
 
     message = {
