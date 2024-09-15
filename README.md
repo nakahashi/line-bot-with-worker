@@ -1,8 +1,11 @@
 # Macでの動作確認
 
 ```zsh
-make run
-curl http://127.0.0.1:8080/
+make dev
+```
+
+```zsh
+make post
 ```
 
 # Macからのデプロイ方法
