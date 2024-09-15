@@ -2,16 +2,17 @@
 
 require "faraday"
 require "json"
+require "base64"
 
 class Worker
-  def initialize
-    @tasks_client = Faraday.new(url: "#{ENV["WORKER_URL"]}:#{ENV["PORT"]}")
-  end
+  class << self
+    def perform(payload)
+      tasks_client = Faraday.new(url: "#{ENV["WORKER_URL"]}:#{ENV["PORT"]}")
 
-  def perform(payload)
-    @tasks_client.post("/worker") do |req|
-      req.headers["Content-Type"] = "application/json"
-      req.body = { payload: }.to_json
+      tasks_client.post("/worker") do |req|
+        req.headers["Content-Type"] = "application/json"
+        req.body = Base64.encode64({ payload: }.to_json)
+      end
     end
   end
 end

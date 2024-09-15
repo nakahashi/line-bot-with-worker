@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "line/bot"
+require "base64"
 require_relative "../models/worker"
 
 unless production?
@@ -36,23 +37,23 @@ class LineBotController < Sinatra::Base
             message: event.message["text"],
           }
 
-          Worker.new.perform(payload)
+          Worker.perform(payload)
         end
       end
     end
 
-    response_body = 'OK'
-    headers['Content-Length'] = response_body.bytesize.to_s
+    response_body = "OK"
+    headers["Content-Length"] = response_body.bytesize.to_s
     response_body
   end
 
   if ENV["WORKER_SERVICE"]
     post "/worker" do
-      payload = JSON.parse(request.body.read)["payload"]
+      payload = Worker.parse_payload(request.body.read)
 
+      text = payload["message"]
       message = {
-        type: "text",
-        text: payload["message"],
+        type: "text", text:,
       }
       @client.reply_message(payload["token"], message)
     end
